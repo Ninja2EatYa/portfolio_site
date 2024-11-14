@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Контакты</title>
+</head>
+<body>
+<h2>Контакты:</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <label for="first_name">Имя:</label><br/>
+    <input type="text" id="first_name" name="first_name" required><br/>
+
+    <label for="second_name">Фамилия:</label><br/>
+    <input type="text" id="second_name" name="second_name" required><br/>
+
+    <label for="request_box">Сообщение:</label><br/>
+    <textarea id="request_box" name="request_box" required></textarea><br/>
+
+    <label for="email">Email:</label><br/>
+    <input type="email" id="email" name="email" required><br/>
+
+    <label for="phone">Телефон:</label><br/>
+    <input type="text" id="phone" name="phone"><br/>
+
+    <button type="submit">Отправить</button>
+</form>
+
+</body>
+</html>

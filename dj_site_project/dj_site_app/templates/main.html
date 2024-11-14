@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная</title>
+</head>
+<body>
+    <h1>{{ header }}</h1>
+    <div style="text-align:center;">
+        <a href="{% url 'about' %}">about</a>
+        <a href="{% url 'projects' %}">projects</a>
+        <a href="{% url 'contacts' %}">contacts</a>
+    </div>
+
+    <footer>
+        <p>© {{ current_year }}</p>
+        <img src="{% static 'path_to_watermark.png' %}" alt="Watermark">
+    </footer>
+</body>
+</html>
