@@ -5,7 +5,7 @@ from .models import *
 def main(request):
     context = {
         'page': 'Главная',
-        'header': 'Александрова Алиса',
+        'header': 'John Doe',
         'footer': 'Москва. 2024',
     }
     return render(request, 'main.html', context)
@@ -31,9 +31,9 @@ def projects_list(request):
         'page': 'Проекты',
         'header': 'Мои проекты:',
         'footer': 'Москва. 2024',
-        'projects': projects_list,
+        'projects_list': projects_list,
     }
-    return render(request, 'projects.html', context)
+    return render(request, 'projects_list.html', context)
 
 
 def contacts(request):

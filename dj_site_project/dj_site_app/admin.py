@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Project, Menu, ReplyField
+from .models import *
 from django.utils.html import format_html
 
 # Register your models here.
@@ -17,5 +17,5 @@ class ProjectAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Project, ProjectAdmin)
-admin.site.register(Menu)
+admin.site.register(About)
 admin.site.register(ReplyField)

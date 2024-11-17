@@ -14,7 +14,7 @@
     </header>
     <div class="content" style="margin: 0 auto; max-width: 800px; padding: 0px;">
         <ul>
-        {% for project in projects %}
+        {% for project in projects_list %}
             <li>{{ project.title }}: {{ project.description }}</li>
             {% if project.image %}
                 <li><img src="{{ project.image.url }}" alt="Изображение проекта"></li>
