@@ -2,19 +2,25 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Главная</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
 </head>
-<body>
-    <h1>{{ header }}</h1>
-    <div style="text-align:center;">
-        <a href="{% url 'about' %}">about</a>
-        <a href="{% url 'projects' %}">projects</a>
-        <a href="{% url 'contacts' %}">contacts</a>
+<body style="background-image: url('{% static '/backgrounds/MB.jpg' %}');
+    background-size: cover; background-attachment: fixed;">
+    <header>
+        <h1>{{ header }}</h1>
+    </header>
+    <div class="content">
+        <div class="banner">
+            <a class="button" href="{% url 'about' %}">ОБО МНЕ</a>
+            <a class="button" href="{% url 'projects' %}">МОИ ПРОЕКТЫ</a>
+            <a class="button" href="{% url 'contacts' %}">КОНТАКТЫ</a>
+        </div>
     </div>
-
     <footer>
-        <p>© {{ current_year }}</p>
-        <img src="{% static 'path_to_watermark.png' %}" alt="Watermark">
+        <p>{{ footer }}</p>
     </footer>
 </body>
 </html>

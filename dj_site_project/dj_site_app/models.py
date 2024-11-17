@@ -6,17 +6,16 @@ from django.db import models
 class Project(models.Model):
     title = models.CharField(max_length=50, unique=True, null=False)
     description = models.TextField()
-    pics = models.FileField(upload_to='projects/')
+    image = models.ImageField(upload_to='media/', null=True)
     created_at = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.title
 
 
-class Menu(models.Model):
+class About(models.Model):
     about = models.TextField()
     contacts = models.TextField()
-    background_image = models.ImageField(upload_to='backgrounds/', null=True, blank=True)
 
     def __str__(self):
         return self.about

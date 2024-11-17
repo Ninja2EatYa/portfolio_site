@@ -2,10 +2,26 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>О владельце</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
 </head>
-<body style="background-image: url('{{ background_image.url }}');">
-    <h2>Информация о владельце:</h2>
-    <p>{{ about_text }}</p>
+<body style="background-image: url('{% static '/backgrounds/shades-of-grey.jpg' %}');
+    background-size: cover; background-attachment: fixed;">
+    <header>
+        <h1>{{ header }}</h1>
+    </header>
+    <div class="content" style="margin: 0 auto; max-width: 800px; padding: 0px;">
+        <form method="post" style="margin: 50px;">
+            {{ about_text }}<br><br><br>
+            {{ about_contacts }}
+        </form>
+    </div>
+    <a class="button" href="{% url 'main' %}" style="margin: auto; text-align: center; width: 350px;
+    margin-bottom: 20px;">НАЗАД</a>
+    <footer>
+        <p>{{ footer }}</p>
+    </footer>
 </body>
 </html>

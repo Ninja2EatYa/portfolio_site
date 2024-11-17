@@ -2,14 +2,32 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Проекты</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
 </head>
-<body>
-<h2>Проекты:</h2>
-<ul>
-{% for project in projects %}
-<li>{{ project.title }}: {{ project.description }}</li>
-{% endfor %}
-</ul>
+<body style="background-image: url('{% static '/backgrounds/wallpaperflare.com_wallpaper (10).jpg' %}');
+    background-size: cover; background-attachment: fixed;">
+    <header>
+        <h1>{{ header }}</h1>
+    </header>
+    <div class="content" style="margin: 0 auto; max-width: 800px; padding: 0px;">
+        <ul>
+        {% for project in projects %}
+            <li>{{ project.title }}: {{ project.description }}</li>
+            {% if project.image %}
+                <li><img src="{{ project.image.url }}" alt="Изображение проекта"></li>
+            {% else %}
+                <li>Изображение отсутствует</li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    </div>
+    <a class="button" href="{% url 'main' %}" style="margin: auto; text-align: center; width: 350px;
+    margin-bottom: 20px;">НАЗАД</a>
+    <footer>
+        <p>{{ footer }}</p>
+    </footer>
 </body>
 </html>

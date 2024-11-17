@@ -2,30 +2,53 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Контакты</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
 </head>
-<body>
-<h2>Контакты:</h2>
-
-<form method="post">
-    {% csrf_token %}
-    <label for="first_name">Имя:</label><br/>
-    <input type="text" id="first_name" name="first_name" required><br/>
-
-    <label for="second_name">Фамилия:</label><br/>
-    <input type="text" id="second_name" name="second_name" required><br/>
-
-    <label for="request_box">Сообщение:</label><br/>
-    <textarea id="request_box" name="request_box" required></textarea><br/>
-
-    <label for="email">Email:</label><br/>
-    <input type="email" id="email" name="email" required><br/>
-
-    <label for="phone">Телефон:</label><br/>
-    <input type="text" id="phone" name="phone"><br/>
-
-    <button type="submit">Отправить</button>
-</form>
-
+<body style="background-image: url('{% static 'backgrounds/desert-tree.jpg' %}');
+    background-size: cover; background-attachment: fixed;">
+    <header>
+        <h1>{{ header }}</h1>
+    </header>
+    <div class="content" style="margin: 0 auto; max-width: 800px; padding: 0px;">
+        <form method="post" style="display: grid; gap: 20px;">
+            {% csrf_token %}
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 20px;">
+                <label for="first_name" style="flex: 1; font-size: 20px; color: rgba(255, 255, 255, 0.7);">Имя:</label>
+                <input type="text" id="first_name" name="first_name"
+                       style="width: 350px; text-align: left; padding: 10px; font-size: 16px; border-radius: 10px;" required>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 20px;">
+                <label for="second_name" style="flex: 1; font-size: 20px; color: rgba(255, 255, 255, 0.7);">Фамилия:</label>
+                <input type="text" id="second_name" name="second_name"
+                       style="width: 350px; text-align: left; padding: 10px; font-size: 16px; border-radius: 10px;" required>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 20px;">
+                <label for="request_box" style="flex: 1; font-size: 20px; color: rgba(255, 255, 255, 0.7);">Сообщение:</label>
+                <textarea id="request_box" name="request_box"
+                          style="width: 350px; height: 80px; text-align: left; padding: 10px; font-size: 16px;
+                          resize: none; border-radius: 10px;" required></textarea>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 20px;">
+                <label for="email" style="flex: 1; font-size: 20px; color: rgba(255, 255, 255, 0.7);">Email:</label>
+                <input type="email" id="email" name="email"
+                       style="width: 350px; text-align: left; padding: 10px; font-size: 16px; border-radius: 10px;" required>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 20px;">
+                <label for="phone" style="flex: 1; font-size: 20px; color: rgba(255, 255, 255, 0.7);">Телефон:</label>
+                <input type="text" id="phone" name="phone"
+                       style="width: 350px; text-align: left; padding: 10px; font-size: 16px; border-radius: 10px;">
+            </div>
+            <button class="button" type="submit" style="margin: auto; text-align: center; min-width: 410px;
+            margin-bottom: 0px;">ОТПРАВИТЬ</button>
+        </form>
+    </div>
+    <a class="button" href="{% url 'main' %}" style="margin: auto; text-align: center; width: 350px;
+    margin-bottom: 20px;">НАЗАД</a>
+    <footer>
+        <p>{{ footer }}</p>
+    </footer>
 </body>
 </html>
