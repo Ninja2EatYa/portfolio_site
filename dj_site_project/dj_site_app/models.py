@@ -6,11 +6,22 @@ from django.db import models
 class Project(models.Model):
     title = models.CharField(max_length=50, unique=True, null=False)
     description = models.TextField()
-    image = models.ImageField(upload_to='media/', null=True)
     created_at = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.title
+
+
+class ProjectImage(models.Model):
+    project = models.ForeignKey(Project, related_name="images", on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='media/', null=True)
+    order = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return f'Image for {self.project.title}'
+
+    class Meta:
+        ordering = ['order']
 
 
 class About(models.Model):

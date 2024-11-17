@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 
 
@@ -34,6 +34,18 @@ def projects_list(request):
         'projects_list': projects_list,
     }
     return render(request, 'projects_list.html', context)
+
+
+def project(request, project_id):
+    project = get_object_or_404(Project, id=project_id)
+    context = {
+        'page': project.title,
+        'header': project.title,
+        'footer': 'Москва. 2024',
+        'project': project,
+        'images': project.images.all(),
+    }
+    return render(request, 'project.html', context)
 
 
 def contacts(request):

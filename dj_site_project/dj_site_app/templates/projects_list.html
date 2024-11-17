@@ -5,27 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page }}</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
-<body style="background-image: url('{% static '/backgrounds/wallpaperflare.com_wallpaper (10).jpg' %}');
+<body style="background-image: url('{% static 'backgrounds/shades-of-grey.jpg' %}');
     background-size: cover; background-attachment: fixed;">
     <header>
         <h1>{{ header }}</h1>
     </header>
-    <div class="content" style="margin: 0 auto; max-width: 800px; padding: 0px;">
-        <ul>
-        {% for project in projects_list %}
-            <li>{{ project.title }}: {{ project.description }}</li>
-            {% if project.image %}
-                <li><img src="{{ project.image.url }}" alt="Изображение проекта"></li>
-            {% else %}
-                <li>Изображение отсутствует</li>
-            {% endif %}
-        {% endfor %}
-        </ul>
+    <div class="content">
+        <div class="projects-list">
+            {% for project in projects_list %}
+                <div class="project-block">
+                    <p style="text-align: center;">
+                        <a class="button" href="{% url 'project' project.id %}">{{ project.title }}</a></p>
+                    {% if project.images.count > 0 %}
+                        <img src="{{ project.images.first.image.url }}" alt="{{ project.title }}">
+                    {% else %}
+                        <p>Изображений нет</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
     </div>
     <a class="button" href="{% url 'main' %}" style="margin: auto; text-align: center; width: 350px;
-    margin-bottom: 20px;">НАЗАД</a>
+    margin-bottom: 20px; margin-top: 60px;">НАЗАД</a>
     <footer>
         <p>{{ footer }}</p>
     </footer>
