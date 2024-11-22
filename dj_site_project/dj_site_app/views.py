@@ -26,7 +26,7 @@ def about(request):
 
 
 def projects_list(request):
-    projects_list = Project.objects.all()
+    projects_list = Project.objects.all().order_by('-id')
     context = {
         'page': 'Проекты',
         'header': 'Мои проекты:',

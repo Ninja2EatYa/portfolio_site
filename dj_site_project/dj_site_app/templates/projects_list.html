@@ -14,17 +14,26 @@
     </header>
     <div class="content">
         <div class="projects-list">
-            {% for project in projects_list %}
+            {% if not projects_list %}
                 <div class="project-block">
-                    <p style="text-align: center;">
-                        <a class="button" href="{% url 'project' project.id %}">{{ project.title }}</a></p>
-                    {% if project.images.count > 0 %}
-                        <img src="{{ project.images.first.image.url }}" alt="{{ project.title }}">
-                    {% else %}
-                        <p>Изображений нет</p>
-                    {% endif %}
+                    <p style="text-align: center;">Проекты не загружены</p>
                 </div>
-            {% endfor %}
+            {% else %}
+                {% for project in projects_list %}
+                    <div class="project-block">
+                        <p style="text-align: center;">
+                            <a class="button" href="{% url 'project' project.id %}">
+                                {{ project.title }}
+                            {% if project.images.count > 0 %}
+                                <img src="{{ project.images.first.image.url }}" alt="{{ project.title }}">
+                            {% else %}
+                                <p>Изображений нет</p>
+                            {% endif %}
+                            </a>
+                        </p>
+                    </div>
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
     <a class="button" href="{% url 'main' %}" style="margin: auto; text-align: center; width: 350px;
