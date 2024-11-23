@@ -13,31 +13,25 @@
         <h1>{{ header }}</h1>
     </header>
     <div class="content">
-        <div class="projects-list">
-            {% if not projects_list %}
+        {% if not projects_list %}
+            <p style="text-align: center;">Проекты не загружены</p>
+        {% else %}
+            {% for project in projects_list %}
                 <div class="project-block">
-                    <p style="text-align: center;">Проекты не загружены</p>
+                    <a class="button" href="{% url 'project' project.id %}">
+                        {{ project.title }}
+                    {% if project.images.count > 0 %}
+                        <img src="{{ project.images.first.image.url }}" alt="{{ project.title }}">
+                    {% else %}
+                        <p>Изображений нет</p>
+                    {% endif %}
+                    </a>
                 </div>
-            {% else %}
-                {% for project in projects_list %}
-                    <div class="project-block">
-                        <p style="text-align: center;">
-                            <a class="button" href="{% url 'project' project.id %}">
-                                {{ project.title }}
-                            {% if project.images.count > 0 %}
-                                <img src="{{ project.images.first.image.url }}" alt="{{ project.title }}">
-                            {% else %}
-                                <p>Изображений нет</p>
-                            {% endif %}
-                            </a>
-                        </p>
-                    </div>
-                {% endfor %}
-            {% endif %}
-        </div>
+            {% endfor %}
+        {% endif %}
     </div>
     <a class="button" href="{% url 'main' %}" style="margin: auto; text-align: center; width: 350px;
-    margin-bottom: 20px; margin-top: 60px;">НАЗАД</a>
+    margin-bottom: 20px; margin-top: 20px;">НАЗАД</a>
     <footer>
         <p>{{ footer }}</p>
     </footer>
