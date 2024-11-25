@@ -94,8 +94,7 @@
    ├── .gitignore
    ├── dj_site_project/
    ├── manage.py
-   ├── requirements.txt
-   └── README.md
+   └── requirements.txt
    ```
 ### Приложение dj_site_app
 - models.py: Определение моделей данных, включая Project, ProjectImage, About, и ReplyField.
