@@ -28,17 +28,14 @@
    ```
    git clone https://github.com/Ninja2EatYa/diploma_dj_site
    cd diploma_dj_site
-   
 2. Создайте виртуальное окружение и активируйте его:
    ```
    python -m venv venv
    source venv/bin/activate  # Для Linux/MacOS
    venv\Scripts\activate  # Для Windows
-   
 3. Установите зависимости:
    ```
    pip install -r requirements.txt
-   
 5. Примените миграции:
    ```
    python manage.py makemigrations
@@ -49,4 +46,67 @@
 9. Запустите сервер:
    ```
    python manage.py runserver
-11. Откройте браузер и перейдите по адресу http://127.0.0.1:8000/
+11. Откройте браузер и перейдите по адресу http://127.0.0.1:8000/main/
+
+## Структура проекта
+
+dj_site_project/
+├── dj_site_app/
+│   ├── media/
+│   │   └── ...
+│   ├── migrations/
+│   │   ├── __init__.py
+│   │   └── ...
+│   ├── static/
+│   │   ├── backgrounds/
+│   │   │   └── ...
+│   │   ├── css/
+│   │   │   └── styles.css
+│   │   └── glightbox/
+│   │       ├── glightbox.min.css
+│   │       └── glightbox.min.js
+│   ├── templates/
+│   │   ├── about.html
+│   │   ├── contacts.html
+│   │   ├── main.html
+│   │   ├── project.html
+│   │   └── projects_list.html
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   ├── views.py
+├── dj_site_project/
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── .env
+├── .gitignore
+├── dj_site_project/
+├── manage.py
+├── requirements.txt
+└── README.md
+
+### Приложение dj_site_app
+models.py: Определение моделей данных, включая Project, ProjectImage, About, и ReplyField.
+views.py: Определение функций представлений для обработки запросов и отображения соответствующих шаблонов.
+urls.py: Конфигурация URL-шаблонов для маршрутизации запросов к соответствующим представлениям.
+admin.py: Настройка административного интерфейса Django для управления моделями.
+apps.py: Конфигурация приложения.
+
+### Шаблоны
+main.html: Главная страница.
+about.html: Страница "Обо мне".
+projects_list.html: Страница со списком проектов.
+project.html: Страница конкретного проекта.
+contacts.html: Страница контактов.
+
+### Статические файлы
+styles.css: Основные стили для всего сайта.
+glightbox.min.css: Стили для карусели изображений.
+glightbox.min.js: Скрипт для карусели изображений.
+- **Репозиторий GlightBox навходится по адресу:** https://github.com/biati-digital/glightbox/tree/master
