@@ -21,7 +21,68 @@
 
 - Python 3.x
 - Django 3.x
-- База данных (например, SQLite, PostgreSQL)
+- PostgreSQL
+
+### Установка PostgreSQL
+1. Для Ubuntu/Debian:
+   ```
+   sudo apt update
+   sudo apt install postgresql postgresql-contrib
+   ```
+2. Для macOS (с использованием Homebrew):
+   ```
+   brew install postgresql
+   brew services start postgresql
+   ```
+3. Для Windows:
+   - Скачайте и установите PostgreSQL с [официального сайта](https://www.postgresql.org/download/windows/).
+
+### Создание базы данных и пользователя:
+1. Войдите в PostgreSQL:
+   ```
+   sudo -u postgres psql
+   ```
+2. Создайте базу данных:
+   ```
+   sql
+   CREATE DATABASE dj_site_db;
+   ```
+3. Создайте пользователя и установите пароль:
+   ```
+   sql
+   CREATE USER dj_site_user WITH PASSWORD 'your_password';
+   ```
+4. Предоставьте пользователю права на базу данных:
+   ```
+   sql
+   GRANT ALL PRIVILEGES ON DATABASE dj_site_db TO dj_site_user;
+   ```
+5. Выйдите из psql:
+   ```
+   sql
+   \q
+   ```
+
+### Настройка Django для использования PostgreSQL
+1. Установите psycopg2:
+   ```
+   pip install psycopg2
+   ```
+2. Обновите настройки Django:
+   - Откройте файл settings.py в директории dj_site_project/dj_site_project/.
+   - Найдите раздел DATABASES и измените его на следующий:
+   ```
+   DATABASES = {
+      'default': {
+         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+         'NAME': 'dj_site_db',
+         'USER': 'dj_site_user',
+         'PASSWORD': 'your_password',
+         'HOST': 'localhost',
+         'PORT': '5432',
+      }
+   }
+   ```
 
 ### Установка
 
