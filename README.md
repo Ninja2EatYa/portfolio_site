@@ -115,7 +115,8 @@
 - styles.css: Основные стили для всего сайта.
 - glightbox.min.css: Стили для карусели изображений.
 - glightbox.min.js: Скрипт для карусели изображений.
-   **Репозиторий GlightBox навходится по адресу:** https://github.com/biati-digital/glightbox/tree/master
+
+В проекте использован репозиторий GlightBox, который расположен по адресу:** https://github.com/biati-digital/glightbox/tree/master
 
 ## Использование
 ### Административная панель
