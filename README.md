@@ -155,20 +155,30 @@
    ├── manage.py
    └── requirements.txt
    ```
-### Можно использовать библиотеку decouple и метод config для сохранения персональных данных отдельно от файла settings.py в файле .env:
-1. Для этого установите ее:
+### Использование библиотеки python-decouple
+1. Установите библиотеку python-decouple:
    ```bash
    pip install python-decouple
    ```
-2. Затем необходимо создать файл .env в корневой директории проекта в котором прописать те данные, которые необходимо безопасно хранить локально на компьютере. Например:
+2. Создайте файл .env в корневой директории проекта и добавьте в него конфиденциальные данные:
    ```python
-   USERNAME = 'username'
-   PASSWORD = 'password'
+   USERNAME = 'dj_site_user'
+   PASSWORD = 'your_password'
    ```
-3. Теперь необходимо импортировать метод config в settings.py и использовать следующий принцип записи:
+3. Импортируйте метод config в файле settings.py и используйте его для загрузки данных из .env:
    ```python
-   "USER": config("USERNAME"),
-   "PASSWORD": config("PASSWORD"),
+   from decouple import config
+   
+   DATABASES = {
+      'default': {
+         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+         'NAME': 'dj_site_db',
+         'USER': config('USERNAME'),
+         'PASSWORD': config('PASSWORD'),
+         'HOST': 'localhost',
+         'PORT': '5432',
+      }
+   }
    ```
 ### Приложение dj_site_app
 - models.py: Определение моделей данных, включая Project, ProjectImage, About, и ReplyField.
