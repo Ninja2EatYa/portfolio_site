@@ -28,4 +28,25 @@
    ```
    git clone https://github.com/Ninja2EatYa/diploma_dj_site
    cd diploma_dj_site
+   
+2. Создайте виртуальное окружение и активируйте его:
    ```
+   python -m venv venv
+   source venv/bin/activate  # Для Linux/MacOS
+   venv\Scripts\activate  # Для Windows
+   
+3. Установите зависимости:
+   ```
+   pip install -r requirements.txt
+   
+5. Примените миграции:
+   ```
+   python manage.py makemigrations
+   python manage.py migrate
+7. Создайте суперпользователя (для доступа к админке):
+   ```
+   python manage.py createsuperuser
+9. Запустите сервер:
+   ```
+   python manage.py runserver
+11. Откройте браузер и перейдите по адресу http://127.0.0.1:8000/
