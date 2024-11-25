@@ -43,23 +43,19 @@
    sudo -u postgres psql
    ```
 2. Создайте базу данных:
-   ```
-   sql
+   ```sql
    CREATE DATABASE dj_site_db;
    ```
 3. Создайте пользователя и установите пароль:
-   ```
-   sql
+   ```sql
    CREATE USER dj_site_user WITH PASSWORD 'your_password';
    ```
 4. Предоставьте пользователю права на базу данных:
-   ```
-   sql
+   ```sql
    GRANT ALL PRIVILEGES ON DATABASE dj_site_db TO dj_site_user;
    ```
 5. Выйдите из psql:
-   ```
-   sql
+   ```sql
    \q
    ```
 
