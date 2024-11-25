@@ -25,12 +25,12 @@
 
 ### Установка PostgreSQL
 1. Для Ubuntu/Debian:
-   ```
+   ```bash
    sudo apt update
    sudo apt install postgresql postgresql-contrib
    ```
 2. Для macOS (с использованием Homebrew):
-   ```
+   ```bash
    brew install postgresql
    brew services start postgresql
    ```
@@ -39,7 +39,7 @@
 
 ### Создание базы данных и пользователя:
 1. Войдите в PostgreSQL:
-   ```
+   ```bash
    sudo -u postgres psql
    ```
 2. Создайте базу данных:
@@ -61,13 +61,13 @@
 
 ### Настройка Django для использования PostgreSQL
 1. Установите psycopg2:
-   ```
+   ```bash
    pip install psycopg2
    ```
 2. Обновите настройки Django:
    - Откройте файл settings.py в директории dj_site_project/dj_site_project/.
    - Найдите раздел DATABASES и измените его на следующий:
-   ```
+   ```python
    DATABASES = {
       'default': {
          'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -83,31 +83,31 @@
 ### Установка
 
 1. Клонируйте репозиторий:
-   ```
+   ```bash
    git clone https://github.com/Ninja2EatYa/diploma_dj_site
    cd diploma_dj_site
    ```
 2. Создайте виртуальное окружение и активируйте его:
-   ```
+   ```bash
    python -m venv venv
    source venv/bin/activate  # Для Linux/MacOS
    venv\Scripts\activate  # Для Windows
    ```
 3. Установите зависимости:
-   ```
+   ```bash
    pip install -r requirements.txt
    ```
 5. Примените миграции:
-   ```
+   ```bash
    python manage.py makemigrations
    python manage.py migrate
    ```
 7. Создайте суперпользователя (для доступа к админке):
-   ```
+   ```bash
    python manage.py createsuperuser
    ```
 9. Запустите сервер:
-   ```
+   ```bash
    python manage.py runserver
    ```
 11. Откройте браузер и перейдите по адресу http://127.0.0.1:8000/main/
