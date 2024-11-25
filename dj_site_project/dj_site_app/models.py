@@ -42,7 +42,7 @@ class ProjectImage(models.Model):
 
 
 class About(models.Model):
-    """Модель раздела "Обо мне" с полем описания и контактными данными (если будет необходимость)"""
+    """Модель раздела "Обо мне" с текстовым полем"""
     about = models.TextField()
 
     def __str__(self) -> str:
