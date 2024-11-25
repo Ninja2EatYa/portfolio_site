@@ -116,7 +116,7 @@
 - glightbox.min.css: Стили для карусели изображений.
 - glightbox.min.js: Скрипт для карусели изображений.
 
-В проекте использован репозиторий GlightBox, который расположен по адресу:** https://github.com/biati-digital/glightbox/tree/master
+В проекте использован репозиторий GlightBox, который расположен по адресу: https://github.com/biati-digital/glightbox/tree/master
 
 ## Использование
 ### Административная панель
