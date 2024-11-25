@@ -2,53 +2,68 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <!-- Настройка масштабирования для мобильных устройств -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Динамически заполняемое название страницы -->
     <title>{{ page }}</title>
+    <!-- Загрузка статических файлов Django -->
     {% load static %}
+    <!-- Подключение стилей CSS -->
     <link rel="stylesheet" href="{% static '/css/styles.css' %}">
 </head>
-<body style="background-image: url('{% static 'backgrounds/desert-tree.jpg' %}');
+<body style="background-image: url('{% static 'backgrounds/colored1.jpg' %}');
     background-size: cover; background-attachment: fixed;">
+    <!-- Динамически заполняемый заголовок -->
     <header>
         <h1>{{ header }}</h1>
     </header>
+    <!-- Основной контент страницы с формой для ввода контактных данных посетителя сайта -->
     <div class="content" style="margin: 0 auto; max-width: 800px; padding: 0px;">
         <form method="post" style="display: grid; gap: 20px;">
             {% csrf_token %}
+            <!-- Поле "Имя" -->
             <div style="display: flex; justify-content: space-between; align-items: center; gap: 20px;">
                 <label for="first_name" style="flex: 1; font-size: 20px; color: rgba(255, 255, 255, 0.7);">Имя:</label>
                 <input type="text" id="first_name" name="first_name"
                        style="width: 350px; text-align: left; padding: 10px; font-size: 16px; border-radius: 10px;" required>
             </div>
+            <!-- Поле "Фамилия" -->
             <div style="display: flex; justify-content: space-between; align-items: center; gap: 20px;">
                 <label for="second_name" style="flex: 1; font-size: 20px; color: rgba(255, 255, 255, 0.7);">Фамилия:</label>
                 <input type="text" id="second_name" name="second_name"
                        style="width: 350px; text-align: left; padding: 10px; font-size: 16px; border-radius: 10px;" required>
             </div>
+            <!-- Поле "Текст обращения" -->
             <div style="display: flex; justify-content: space-between; align-items: center; gap: 20px;">
                 <label for="request_box" style="flex: 1; font-size: 20px; color: rgba(255, 255, 255, 0.7);">Сообщение:</label>
                 <textarea id="request_box" name="request_box"
                           style="width: 350px; height: 80px; text-align: left; padding: 10px; font-size: 16px;
                           resize: none; border-radius: 10px;" required></textarea>
             </div>
+            <!-- Поле "E-mail" -->
             <div style="display: flex; justify-content: space-between; align-items: center; gap: 20px;">
                 <label for="email" style="flex: 1; font-size: 20px; color: rgba(255, 255, 255, 0.7);">Email:</label>
                 <input type="email" id="email" name="email"
                        style="width: 350px; text-align: left; padding: 10px; font-size: 16px; border-radius: 10px;" required>
             </div>
+            <!-- Поле "Телефон" -->
             <div style="display: flex; justify-content: space-between; align-items: center; gap: 20px;">
                 <label for="phone" style="flex: 1; font-size: 20px; color: rgba(255, 255, 255, 0.7);">Телефон:</label>
                 <input type="text" id="phone" name="phone"
                        style="width: 350px; text-align: left; padding: 10px; font-size: 16px; border-radius: 10px;">
             </div>
+            <!-- Кнопка для отправки формы -->
             <button class="button" type="submit" style="margin: auto; text-align: center; min-width: 410px;
             margin-bottom: 0px;">ОТПРАВИТЬ</button>
         </form>
     </div>
+    <!-- Кнопки для возврата на главную страницу -->
+    <a class="back-button" href="{% url 'main' %}"></a>
     <a class="button" href="{% url 'main' %}" style="margin: auto; text-align: center; width: 350px;
     margin-bottom: 20px;">НАЗАД</a>
+    <!-- Футер с динамическим выводом текущего года -->
     <footer>
-        <p>{{ footer }}</p>
+        <p>Москва {% now "Y" %}</p>
     </footer>
 </body>
 </html>

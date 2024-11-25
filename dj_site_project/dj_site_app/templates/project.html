@@ -2,37 +2,51 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <!-- Настройка масштабирования для мобильных устройств -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Динамически заполняемое название страницы -->
     <title>{{ page }}</title>
+    <!-- Загрузка статических файлов Django -->
     {% load static %}
+    <!-- Подключение стилей CSS -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <!-- Подключение стилей glightbox для карусели изображений проекта -->
     <link rel="stylesheet" href="{% static 'glightbox/glightbox.min.css' %}">
 </head>
-<body style="background-image: url('{% static 'backgrounds/shades-of-grey.jpg' %}');
+<body style="background-image: url('{% static 'backgrounds/grey2.jpg' %}');
     background-size: cover; background-attachment: fixed;">
+    <!-- Динамически заполняемый заголовок -->
     <header>
         <h1>{{ header }}</h1>
     </header>
+    <!-- Основной контент страницы с описанием проекта и всеми его изображениями -->
     <div class="content" style="margin: 0 auto; max-width: 800px; padding: 0px;">
-        <p>{{ project.description }}</p>
+        <!-- Динамически заполняемое описание проекта -->
+        <p>{{ project.description|linebreaks }}</p>
         <div class="image-gallery">
             {% if project.images.count > 0 %}
+                <!-- Вывод всех изображений -->
                 {% for image in images %}
                     <a href="{{ image.image.url }}" class="glightbox" data-gallery="project-images">
                         <img src="{{ image.image.url }}" alt="Изображение проекта"
                              style="height: 150px; object-fit: cover; margin: 10px; cursor: pointer;">
                     </a>
                 {% endfor %}
+            <!-- Если ни одного изображения не загружено в проект, то вывести текст -->
             {% else %}
                 <p>Изображений нет</p>
             {% endif %}
         </div>
     </div>
+    <!-- Кнопки для возврата на главную страницу -->
+    <a class="back-button" href="{% url 'main' %}"></a>
     <a class="button" href="{% url 'projects_list' %}" style="margin: auto; text-align: center; width: 350px;
     margin-bottom: 20px; margin-top: 20px;">НАЗАД</a>
+    <!-- Футер с динамическим выводом текущего года -->
     <footer>
-        <p>{{ footer }}</p>
+        <p>Москва {% now "Y" %}</p>
     </footer>
+<!-- Подключение карусели от glightbox для перелистывания изображений проекта -->
 <script src="{% static 'glightbox/glightbox.min.js' %}"></script>
 <script>
     const lightbox = GLightbox({

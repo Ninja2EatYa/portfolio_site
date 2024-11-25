@@ -1,34 +1,41 @@
+"""
+Настройки административного интерфейса Django с классами и встроенными моделями для управления в административном
+интерфейсе
+"""
+
 from django.contrib import admin
 from .models import *
-from django.utils.html import format_html
-
-# Register your models here.
-
-
-# class ProjectAdmin(admin.ModelAdmin):
-#     list_display = ('title', 'description', 'image_tag', 'created_at')
-#
-#     def image_tag(self, obj):
-#         if obj.image:
-#             return format_html('<img src="{}" style="max-width: 100px; max-height: 100px;" />', obj.image.url)
-#         return "Нет изображения"
-#
-#     image_tag.short_description = 'Изображение'
+from django.utils.html import mark_safe
 
 
 class ProjectImageInline(admin.TabularInline):
+    """Класс встроенной административной модели для загрузки изображений проекта через админ-панель"""
     model = ProjectImage
-    extra = 1  # Количество пустых форм по умолчанию
-    fields = ('image', 'order')
+    extra = 0  # Количество пустых форм по умолчанию
+    fields = ('image', 'order', 'img_preview')
     ordering = ('order',)
+    readonly_fields = ('img_preview',)
 
 
 class ProjectAdmin(admin.ModelAdmin):
+    """Класс административной модели проекта, включающий класс для изображений проекта"""
     inlines = [ProjectImageInline]
-    list_display = ('title', 'created_at')
+    list_display = ('title', 'created_at', 'img_preview')
+
+    def img_preview(self, obj) -> str:
+        """Генерация HTML с предварительным просмотром изображений проекта в списке проектов в админ-панели"""
+        images = obj.images.all()
+        if images:
+            return mark_safe(''.join([
+                f'<img src="{img.image.url}" style="max-width: 100px; max-height: 100px; margin-right: 5px;" />'
+                for img in images
+            ]))
+        return "Нет изображения"
+
+    img_preview.short_description = 'Изображение'
 
 
-admin.site.register(Project, ProjectAdmin)
-admin.site.register(ProjectImage)
-admin.site.register(About)
-admin.site.register(ReplyField)
+admin.site.register(Project, ProjectAdmin)  # Регистрация модели Project c настройками ProjectAdmin
+admin.site.register(ProjectImage)  # Регистрация модели ProjectImage с настройками по-умолчанию
+admin.site.register(About)  # Регистрация модели About с настройками по-умолчанию
+admin.site.register(ReplyField)  # Регистрация модели ReplyField с настройками по-умолчанию

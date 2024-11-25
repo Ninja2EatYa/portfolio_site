@@ -1,47 +1,71 @@
+"""
+Модуль представлений.
+Содержит функции представлений, которые обрабатывают различные запросы и отображают соответствующие шаблоны.
+
+Каждая функция отвечает за отображение своей страницы:
+- главная страница (main)
+- страница "Обо мне" (about)
+- страница списка проектов (projects_list)
+- страница конкретного проекта (project)
+- страница контактов (contacts), с обработкой формы обратной связи
+"""
+
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 
 
 def main(request):
+    """Возвращает главную страницу с названием и заголовком"""
     context = {
         'page': 'Главная',
-        'header': 'John Doe',
-        'footer': 'Москва. 2024',
+        'header': 'Алиса Александрова',
     }
     return render(request, 'main.html', context)
 
 
 def about(request):
+    """
+    Возвращает страницу "Обо мне" с названием и заголовком.
+    Получает информацию "Обо мне" из модели About и отображает на странице.
+    Если информация отсутствует, выводит сообщение об отсутствии информации.
+    """
     about_info = About.objects.first()  # Предполагается, что существует только одна запись
     if about_info is None:
         return render(request, 'about.html', {'about_text': 'Информация отсутствует.'})
     context = {
         'page': 'Обо мне',
         'header': 'Обо мне:',
-        'footer': 'Москва. 2024',
         'about_text': about_info.about,
-        'about_contacts': about_info.contacts,
     }
     return render(request, 'about.html', context)
 
 
 def projects_list(request):
+    """
+    Возвращает страницу перечня проектов с названием и заголовком.
+    Получает все проекты из модели Project, сортирует их по убыванию id и отображает на странице.
+    Сортировка по убыванию id нужна, чтобы в случае внесения изменений в старый проект порядок отображения всех
+    проектов на странице не менялся.
+    """
     projects_list = Project.objects.all().order_by('-id')
     context = {
         'page': 'Проекты',
         'header': 'Мои проекты:',
-        'footer': 'Москва. 2024',
         'projects_list': projects_list,
     }
     return render(request, 'projects_list.html', context)
 
 
 def project(request, project_id):
+    """
+    Возвращает страницу проекта с названием и заголовком.
+    Получает проект по его id, если проект не найден, возвращает 404 ошибку.
+    Отображает страницу проекта с его описанием и изображениями.
+    """
     project = get_object_or_404(Project, id=project_id)
     context = {
         'page': project.title,
         'header': project.title,
-        'footer': 'Москва. 2024',
         'project': project,
         'images': project.images.all(),
     }
@@ -49,10 +73,14 @@ def project(request, project_id):
 
 
 def contacts(request):
+    """
+    Возвращает страницу контактов с названием и заголовком.
+    Обрабатывает POST-запрос для сохранения данных формы обратной связи. После обработки формы перенаправляет на главную
+    страницу.
+    """
     context = {
         'page': 'Контакты',
         'header': 'Свяжитесь со мной:',
-        'footer': 'Москва. 2024',
     }
     if request.method == "POST":
         first_name = request.POST.get('first_name')
