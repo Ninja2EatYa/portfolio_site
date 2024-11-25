@@ -19,9 +19,9 @@
 
 ### Требования
 
-- Python 3.x
-- Django 3.x
-- PostgreSQL
+- Python 3.9
+- Django 4.2.16
+- PostgreSQL 17
 
 ### Установка PostgreSQL
 1. Для Ubuntu/Debian:
