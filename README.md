@@ -149,9 +149,10 @@
    │   ├── settings.py
    │   ├── urls.py
    │   └── wsgi.py
+   ├── logs/
+   │   └── django.log
    ├── .env
    ├── .gitignore
-   ├── dj_site_project/
    ├── manage.py
    └── requirements.txt
    ```
