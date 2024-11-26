@@ -1,7 +1,9 @@
 """
-Модели данных для приложения Django, которые представляют таблицы базы данных и их отношения.
+Модели данных для приложения Django, которые
+представляют таблицы базы данных и их отношения.
 
-Представлены три основные модели для разделов "Обо мне", "Мои проекты" и "Контакты", а также модель для загрузки
+Представлены три основные модели для разделов "Обо мне",
+"Мои проекты" и "Контакты", а также модель для загрузки
 изображений в раздел "Мои проекты"
 """
 
@@ -10,7 +12,10 @@ from django.utils.html import mark_safe
 
 
 class Project(models.Model):
-    """Модель раздела "Мои проекты" с названием проекта, его описанием и датой создания."""
+    """
+    Модель раздела "Мои проекты" с названием проекта,
+    его описанием и датой создания.
+    """
     title = models.CharField(max_length=50, unique=True, null=False)
     description = models.TextField(null=True)
     created_at = models.DateField(auto_now_add=True)
@@ -20,9 +25,15 @@ class Project(models.Model):
 
 
 class ProjectImage(models.Model):
-    """Модель для изображений раздела "Мои проекты" с указанием/привязкой проекта, самого изображения и порядка
-    загруженных изображений (порядок нужен для определения изображения для превью)."""
-    project = models.ForeignKey(Project, related_name='images', on_delete=models.CASCADE)
+    """
+    Модель для изображений раздела "Мои проекты"
+    с указанием/привязкой проекта, самого изображения
+    и порядка загруженных изображений (порядок нужен
+    для определения изображения для превью).
+    """
+    project = models.ForeignKey(
+        Project, related_name='images', on_delete=models.CASCADE
+    )
     image = models.ImageField(upload_to='media/', null=True)
     order = models.PositiveIntegerField(default=2)
 
@@ -30,9 +41,15 @@ class ProjectImage(models.Model):
         return f'Image for {self.project.title}'
 
     def img_preview(self) -> str:
-        """Генерация HTML с предварительным просмотром изображений проекта в настройках проекта в админ-панели"""
+        """
+        Генерация HTML с предварительным просмотром
+        изображений проекта в настройках проекта в админ-панели
+        """
         if self.image:
-            return mark_safe(f'<img src="{self.image.url}" style="max-width: 100px; max-height: 100px;"/>')
+            return mark_safe(
+                f'<img src="{self.image.url}"'
+                f'style="max-width: 100px; max-height: 100px;"/>'
+            )
         return 'Нет изображения'
 
     img_preview.short_description = 'Изображение'
@@ -50,7 +67,10 @@ class About(models.Model):
 
 
 class ReplyField(models.Model):
-    """Модель раздела "Контакты" с полями для ручного ввода посетителем сайта"""
+    """
+    Модель раздела "Контакты" с полями для
+    ручного ввода посетителем сайта
+    """
     first_name = models.CharField(max_length=30, null=False)
     second_name = models.CharField(max_length=30, null=False)
     request_box = models.TextField(null=False, max_length=500)
