@@ -62,7 +62,7 @@ class ProjectImage(models.Model):
 
 
 @receiver(post_save, sender=ProjectImage)
-def resize_image_on_save(instance) -> None:
+def resize_image_on_save(sender, instance, **kwargs) -> None:
     """
     Сигнал для автоматического уменьшения размеров изображения
     при сохранении экземпляра модели ProjectImage.
