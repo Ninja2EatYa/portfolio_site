@@ -12,10 +12,15 @@
 
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 
 def main(request):
     """Возвращает главную страницу с названием и заголовком"""
+    logger.info('Запрос на главную страницу')
     context = {
         'page': 'Главная',
         'header': 'Алиса Александрова',
@@ -29,8 +34,10 @@ def about(request):
     Получает информацию "Обо мне" из модели About и отображает на странице.
     Если информация отсутствует, выводит сообщение об отсутствии информации.
     """
+    logger.info('Запрос на страницу "Обо мне"')
     about_info = About.objects.first()  # Предполагается, что существует только одна запись
     if about_info is None:
+        logger.warning('Информация "Обо мне" отсутствует')
         return render(request, 'about.html', {'about_text': 'Информация отсутствует.'})
     context = {
         'page': 'Обо мне',
@@ -47,7 +54,10 @@ def projects_list(request):
     Сортировка по убыванию id нужна, чтобы в случае внесения изменений в старый проект порядок отображения всех
     проектов на странице не менялся.
     """
+    logger.info('Запрос на страницу списка проектов')
     projects_list = Project.objects.all().order_by('-id')
+    if not projects_list:
+        logger.warning('Информация о проектах отсутствует')
     context = {
         'page': 'Проекты',
         'header': 'Мои проекты:',
@@ -62,6 +72,7 @@ def project(request, project_id):
     Получает проект по его id, если проект не найден, возвращает 404 ошибку.
     Отображает страницу проекта с его описанием и изображениями.
     """
+    logger.info(f'Запрос на страницу проекта с id={project_id}')
     project = get_object_or_404(Project, id=project_id)
     context = {
         'page': project.title,
@@ -78,23 +89,28 @@ def contacts(request):
     Обрабатывает POST-запрос для сохранения данных формы обратной связи. После обработки формы перенаправляет на главную
     страницу.
     """
+    logger.info('Запрос на страницу контактов')
     context = {
         'page': 'Контакты',
         'header': 'Свяжитесь со мной:',
     }
     if request.method == "POST":
-        first_name = request.POST.get('first_name')
-        second_name = request.POST.get('second_name')
-        request_box = request.POST.get('request_box')
-        email = request.POST.get('email')
-        phone = request.POST.get('phone')
-        reply = ReplyField(
-            first_name=first_name,
-            second_name=second_name,
-            request_box=request_box,
-            email=email,
-            phone=phone
-        )
-        reply.save()
-        return redirect('main')
+        try:
+            first_name = request.POST.get('first_name')
+            second_name = request.POST.get('second_name')
+            request_box = request.POST.get('request_box')
+            email = request.POST.get('email')
+            phone = request.POST.get('phone')
+            reply = ReplyField(
+                first_name=first_name,
+                second_name=second_name,
+                request_box=request_box,
+                email=email,
+                phone=phone
+            )
+            reply.save()
+            logger.info(f'Форма обратной связи получена от: {first_name} {second_name}')
+            return redirect('main')
+        except Exception as err:
+            logger.error(f'Ошибка при обработке формы обратной связи: {err}')
     return render(request, 'contacts.html', context)
