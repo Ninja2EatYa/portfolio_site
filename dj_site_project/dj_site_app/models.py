@@ -9,6 +9,9 @@
 
 from django.db import models
 from django.utils.html import mark_safe
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from .utils import resize_image
 
 
 class Project(models.Model):
@@ -56,6 +59,16 @@ class ProjectImage(models.Model):
 
     class Meta:
         ordering = ['order']
+
+
+@receiver(post_save, sender=ProjectImage)
+def resize_image_on_save(instance) -> None:
+    """
+    Сигнал для автоматического уменьшения размеров изображения
+    при сохранении экземпляра модели ProjectImage.
+    """
+    if instance.image:
+        resize_image(instance.image.path, 1920)
 
 
 class About(models.Model):
