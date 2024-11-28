@@ -5,14 +5,16 @@
 """
 
 from django.contrib import admin
-from .models import Project, ProjectImage, About, ReplyField
+from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin
+from .models import About, Project, ProjectImage, ReplyField
 from django.utils.html import mark_safe
 
 
 class ProjectImageInline(admin.TabularInline):
     """
-    Класс встроенной административной модели
-    для загрузки изображений проекта через админ-панель
+    Встроенная модель для загрузки изображений
+    проекта через админ-панель
     """
     model = ProjectImage
     extra = 0  # Количество пустых форм по умолчанию
@@ -23,8 +25,9 @@ class ProjectImageInline(admin.TabularInline):
 
 class ProjectAdmin(admin.ModelAdmin):
     """
-    Класс административной модели проекта,
-    включающий класс для изображений проекта
+    Кастомизация административной панели
+    для модели проекта, включающая встроенную
+    модель для загрузки изображений
     """
     inlines = [ProjectImageInline]
     list_display = ('title', 'created_at', 'img_preview')
@@ -47,11 +50,25 @@ class ProjectAdmin(admin.ModelAdmin):
     img_preview.short_description = 'Изображение'
 
 
-# Регистрация модели Project c настройками ProjectAdmin
-admin.site.register(Project, ProjectAdmin)
-# Регистрация модели ProjectImage с настройками по-умолчанию
-admin.site.register(ProjectImage)
+class MyAdminSite(admin.AdminSite):
+    """
+    Кастомизация административной панели
+    с настройкой наименований полей
+    """
+    site_header = "Управление сайтом"
+    site_title = "Админ-панель"
+    index_title = "Разделы"
+
+
+admin_site = MyAdminSite()
+
+# Регистрация встроенной модели User с настройками UserAdmin.
+admin_site.register(User, UserAdmin)
 # Регистрация модели About с настройками по-умолчанию
-admin.site.register(About)
+admin_site.register(About)
+# Регистрация модели Project c настройками ProjectAdmin
+admin_site.register(Project, ProjectAdmin)
 # Регистрация модели ReplyField с настройками по-умолчанию
-admin.site.register(ReplyField)
+admin_site.register(ReplyField)
+# Регистрация модели ProjectImage с настройками по-умолчанию
+admin_site.register(ProjectImage)

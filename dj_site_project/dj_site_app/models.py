@@ -14,6 +14,23 @@ from django.dispatch import receiver
 from .utils import resize_image
 
 
+class About(models.Model):
+    """Модель раздела "Обо мне" с текстовым полем"""
+    about = models.TextField()
+
+    class Meta:
+        verbose_name = 'ОБО МНЕ'
+        verbose_name_plural = 'ОБО МНЕ'
+
+    def __str__(self) -> str:
+        return self.about
+
+
+class Blog(models.Model):
+    title = models.CharField(max_length=50, verbose_name='Заголовок')
+    content = models.TextField(verbose_name='Содержание')
+
+
 class Project(models.Model):
     """
     Модель раздела "Мои проекты" с названием проекта,
@@ -22,6 +39,10 @@ class Project(models.Model):
     title = models.CharField(max_length=50, unique=True, null=False)
     description = models.TextField(null=True)
     created_at = models.DateField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'ПРОЕКТ'
+        verbose_name_plural = 'ПРОЕКТЫ'
 
     def __str__(self) -> str:
         return self.title
@@ -37,8 +58,13 @@ class ProjectImage(models.Model):
     project = models.ForeignKey(
         Project, related_name='images', on_delete=models.CASCADE
     )
-    image = models.ImageField(upload_to='media/', null=True)
+    image = models.ImageField(upload_to='media/project/', null=True)
     order = models.PositiveIntegerField(default=2)
+
+    class Meta:
+        verbose_name = 'Изображение'
+        verbose_name_plural = 'Все изображения'
+        ordering = ['order']
 
     def __str__(self) -> str:
         return f'Image for {self.project.title}'
@@ -57,9 +83,6 @@ class ProjectImage(models.Model):
 
     img_preview.short_description = 'Изображение'
 
-    class Meta:
-        ordering = ['order']
-
 
 @receiver(post_save, sender=ProjectImage)
 def resize_image_on_save(sender, instance, **kwargs) -> None:
@@ -69,14 +92,6 @@ def resize_image_on_save(sender, instance, **kwargs) -> None:
     """
     if instance.image:
         resize_image(instance.image.path, 1920)
-
-
-class About(models.Model):
-    """Модель раздела "Обо мне" с текстовым полем"""
-    about = models.TextField()
-
-    def __str__(self) -> str:
-        return self.about
 
 
 class ReplyField(models.Model):
@@ -89,6 +104,10 @@ class ReplyField(models.Model):
     request_box = models.TextField(null=False, max_length=500)
     email = models.EmailField(null=False)
     phone = models.CharField(null=False, max_length=50)
+
+    class Meta:
+        verbose_name = 'КОНТАКТ'
+        verbose_name_plural = 'КОНТАКТЫ'
 
     def __str__(self) -> str:
         return self.first_name
