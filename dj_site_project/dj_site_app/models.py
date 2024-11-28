@@ -16,7 +16,7 @@ from .utils import resize_image
 
 class About(models.Model):
     """Модель раздела "Обо мне" с текстовым полем"""
-    about = models.TextField()
+    about = models.TextField(verbose_name='Содержание раздела')
 
     class Meta:
         verbose_name = 'ОБО МНЕ'
@@ -27,8 +27,8 @@ class About(models.Model):
 
 
 class Blog(models.Model):
-    title = models.CharField(max_length=50, verbose_name='Заголовок')
-    content = models.TextField(verbose_name='Содержание')
+    title = models.CharField(max_length=50, verbose_name='Заголовок блога')
+    content = models.TextField(verbose_name='Содержание блога')
 
 
 class Project(models.Model):
@@ -36,9 +36,9 @@ class Project(models.Model):
     Модель раздела "Мои проекты" с названием проекта,
     его описанием и датой создания.
     """
-    title = models.CharField(max_length=50, unique=True, null=False)
-    description = models.TextField(null=True)
-    created_at = models.DateField(auto_now_add=True)
+    title = models.CharField(max_length=50, unique=True, null=False, verbose_name='Наименование проекта')
+    description = models.TextField(null=True, verbose_name='Описание проекта')
+    created_at = models.DateField(auto_now_add=True, verbose_name='Дата создания')
 
     class Meta:
         verbose_name = 'ПРОЕКТ'
@@ -58,11 +58,11 @@ class ProjectImage(models.Model):
     project = models.ForeignKey(
         Project, related_name='images', on_delete=models.CASCADE
     )
-    image = models.ImageField(upload_to='media/project/', null=True)
-    order = models.PositiveIntegerField(default=2)
+    image = models.ImageField(upload_to='media/project/', null=True, verbose_name='Файл изображения')
+    order = models.PositiveIntegerField(default=2, verbose_name='Порядок отображения на сайте')
 
     class Meta:
-        verbose_name = 'Изображение'
+        verbose_name = 'Изображение и проект'
         verbose_name_plural = 'Все изображения'
         ordering = ['order']
 
@@ -99,11 +99,11 @@ class ReplyField(models.Model):
     Модель раздела "Контакты" с полями для
     ручного ввода посетителем сайта
     """
-    first_name = models.CharField(max_length=30, null=False)
-    second_name = models.CharField(max_length=30, null=False)
-    request_box = models.TextField(null=False, max_length=500)
-    email = models.EmailField(null=False)
-    phone = models.CharField(null=False, max_length=50)
+    first_name = models.CharField(max_length=30, null=False, verbose_name='Имя')
+    second_name = models.CharField(max_length=30, null=False, verbose_name='Фамилия')
+    request_box = models.TextField(null=False, max_length=500, verbose_name='Сообщение')
+    email = models.EmailField(null=False, verbose_name='E-mail')
+    phone = models.CharField(null=False, max_length=50, verbose_name='Телефон')
 
     class Meta:
         verbose_name = 'КОНТАКТ'
