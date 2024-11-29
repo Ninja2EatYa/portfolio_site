@@ -6,7 +6,7 @@
 "Мои проекты" и "Контакты", а также модель для загрузки
 изображений в раздел "Мои проекты"
 """
-
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils.html import mark_safe
 from django.db.models.signals import post_save
@@ -27,8 +27,31 @@ class About(models.Model):
 
 
 class Blog(models.Model):
+    """Модель для блог-постов"""
     title = models.CharField(max_length=50, verbose_name='Заголовок блога')
     content = models.TextField(verbose_name='Содержание блога')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата и время создания')
+    updated_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата и время изменения')
+    image = models.ImageField(upload_to='media/blog/image/', null=True, blank=True, verbose_name='Файл изображения')
+    video = models.FileField(upload_to='media/blog/video/', null=True, blank=True, verbose_name='Файл видео')
+
+    class Meta:
+        verbose_name = 'МОЙ БЛОГ'
+        verbose_name_plural = 'МОЙ БЛОГ'
+
+    def __str__(self) -> str:
+        return self.title
+
+
+@receiver(post_save, sender=Blog)
+def resize_image_on_save(sender, instance, **kwargs) -> None:
+    """
+    Сигнал для автоматического уменьшения размеров изображения
+    при сохранении экземпляра модели BlogPost.
+    """
+    if instance.image:
+        resize_image(instance.image.path, 1920)
 
 
 class Project(models.Model):

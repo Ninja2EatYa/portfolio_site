@@ -30,11 +30,12 @@ input, textarea {
 /* Стили для баннера */
 .banner {
     width: 100%;
-    height: 2cm;
-    background-color: rgba(51, 51, 51, 0.5);
+    height: 100px;
+    background-color: rgba(51, 51, 51, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Основные стили для кнопок */
@@ -42,40 +43,43 @@ input, textarea {
     font-family: 'Avenir', 'Nunito', sans-serif;
     font-weight: normal;
     color: rgba(255, 255, 255, 0.5);
-    background-color: rgba(51, 51, 51, 0.0);
-    padding: 15px 30px;
+    background-color: rgba(51, 51, 51, 0.1);
+    padding: 20px 30px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 20px;
-    margin: 0 10px; /* Отступы между кнопками */
+    margin: 10px; /* Отступы между кнопками */
     text-decoration: none;
-    transition: transform 0.1s ease;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Стили для кнопок при наведении курсора */
 .button:hover {
-    transform: translateY(2px);
+    transform: translateY(3px);
     color: rgba(255, 255, 255, 1);
     background-color: rgba(51, 51, 51, 0.2);
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
 }
 
 /* Основные стили для кнопки возврата */
 .back-button {
     position: fixed;
-    top: 10px;
-    left: 10px;
+    top: 50px;
+    left: 50px;
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: rgba(51, 51, 51, 0.5);
+    background-color: rgba(51, 51, 51, 0.1);
     color: rgba(255, 255, 255, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
     font-size: 24px;
-    transition: background-color 0.3s ease;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Символ кнопки возврата */
@@ -85,8 +89,47 @@ input, textarea {
 
 /* Стили для кнопки возврата при наведении курсора */
 .back-button:hover {
-    background-color: rgba(51, 51, 51, 0.8);
+    background-color: rgba(51, 51, 51, 0.2);
     color: rgba(255, 255, 255, 1);
+    transform: translateY(3px);
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+}
+
+/* Стили для блока поста */
+.post-block {
+    border-radius: 5px;
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    display: block;
+    padding: 50px;
+    margin: 50px auto;
+    background-color: rgba(51, 51, 51, 0.1);
+    color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post-info {
+    font-size: 10px;
+    text-align: right;
+}
+
+/* Стили для изображений внутри блока поста */
+.post-block img {
+    border-radius: 5px;
+    width: 500px;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Стили для видео внутри блока поста */
+.post-block video {
+    border-radius: 5px;
+    width: 500px;
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 /* Стили для блока проекта */
@@ -97,26 +140,28 @@ input, textarea {
 /* Стили для кнопок внутри блока проекта */
 .project-block .button {
     display: inline-block;
-    max-width: 300px;
-    margin-bottom: 10px;
+    width: 500px;
+    margin-bottom: 50px;
     text-align: left;
     font-family: inherit;
     font-size: 20px;
-    padding: 50px 50px;
-    background-color: rgba(51, 51, 51, 0);
+    padding: 50px;
+    background-color: rgba(51, 51, 51, 0.1);
     color: rgba(255, 255, 255, 0.5);
     text-decoration: none;
     border: none;
     border-radius: 5px;
-    transition: transform 0.1s ease;
+    transition: transform 0.3s ease;
     cursor: pointer;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Стили для кнопок внутри блока проекта при наведении курсора */
 .project-block .button:hover {
-    transform: translateY(2px);
+    transform: translateY(3px);
     background-color: rgba(51, 51, 51, 0.2);
     color: rgba(255, 255, 255, 1);
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
 }
 
 /* Стили для изображений внутри блока проекта */
@@ -124,7 +169,7 @@ input, textarea {
     display: block;
     margin: 20px auto 0;
     width: 100%;
-    max-width: 300px;
+    width: 500px;
     height: auto;
 }
 
@@ -137,9 +182,10 @@ header {
 
 /* Стили для футера */
 footer {
-    font-size: 16px;
-    background-color: rgba(51, 51, 51, 0.5);
-    color: rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+    font-weight: lighter;
+    background-color: rgba(51, 51, 51, 0.1);
+    color: rgba(255, 255, 255, 0.7);
     text-align: center;
 }
 
@@ -154,9 +200,53 @@ footer {
 .image-gallery img {
     cursor: pointer;
     transition: transform 0.3s;
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
 }
 
 /* Стили для изображений в галерее при наведении курсора */
 .image-gallery img:hover {
-    transform: scale(1.1);
+    transform: scale(1.03);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Стиль нижней кнопки "НАЗАД" */
+.back-bottom-button {
+    font-family: 'Avenir', 'Nunito', sans-serif;
+    font-weight: normal;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(51, 51, 51, 0.1);
+    padding: 20px 0px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    text-decoration: none;
+    transition: transform 0.1s ease;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    text-align: center;
+    width: 600px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.back-bottom-button:hover {
+    transform: translateY(3px);
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(51, 51, 51, 0.2);
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+}
+
+.input-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-box {
+    width: 430px;
+    text-align: left;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
 }

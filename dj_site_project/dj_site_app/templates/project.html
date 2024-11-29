@@ -40,8 +40,7 @@
     </div>
     <!-- Кнопки для возврата на главную страницу -->
     <a class="back-button" href="{% url 'main' %}"></a>
-    <a class="button" href="{% url 'projects_list' %}" style="margin: auto; text-align: center; width: 350px;
-    margin-bottom: 20px; margin-top: 20px;">НАЗАД</a>
+    <a class="back-bottom-button" href="{% url 'projects_list' %}">НАЗАД</a>
     <!-- Футер с динамическим выводом текущего года -->
     <footer>
         <p>Москва {% now "Y" %}</p>

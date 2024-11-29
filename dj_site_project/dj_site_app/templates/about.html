@@ -18,15 +18,14 @@
         <h1>{{ header }}</h1>
     </header>
     <!-- Основной контент страницы с динамически заполняемыми полями -->
-    <div class="content" style="margin: 0 auto; max-width: 1300px; padding: 0px;">
-        <form method="post" style="margin: 30px;">
+    <div class="content" style="margin: auto; max-width: 1200px;">
+        <form method="post">
             {{ about_text|linebreaks }}
         </form>
     </div>
     <!-- Кнопки для возврата на главную страницу -->
     <a class="back-button" href="{% url 'main' %}"></a>
-    <a class="button" href="{% url 'main' %}" style="margin: auto; text-align: center; width: 350px;
-    margin-bottom: 20px; margin-top: 0px;">НАЗАД</a>
+    <a class="back-bottom-button" href="{% url 'main' %}">НАЗАД</a>
     <!-- Футер с динамическим выводом текущего года -->
     <footer>
         <p>Москва {% now "Y" %}</p>

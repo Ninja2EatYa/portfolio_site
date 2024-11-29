@@ -9,8 +9,7 @@
 """
 
 from django.urls import path
-from .views import main, about, projects_list, project, contacts
-
+from .views import main, about, projects_list, project, contacts, blog_list
 
 urlpatterns = [
     # Главная страница
@@ -23,4 +22,6 @@ urlpatterns = [
     path('projects_list/project/<int:project_id>/', project, name='project'),
     # Страница контактов
     path('contacts/', contacts, name='contacts'),
+    # Страница блог-постов
+    path('blog/', blog_list, name='blog_list'),
 ]

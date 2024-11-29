@@ -12,7 +12,7 @@
 """
 
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import About, Project, ReplyField
+from .models import About, Blog, Project, ReplyField
 import logging
 
 
@@ -38,10 +38,10 @@ def about(request):
     """
     logger.info('Запрос на страницу "Обо мне"')
     about_info = About.objects.first()
-    if about_info is None:
+    if not about_info:
         logger.warning('Информация "Обо мне" отсутствует')
         return render(request, 'about.html',
-                      {'about_text': 'Информация отсутствует.'})
+                      {'about_text': 'Информация "Обо мне" отсутствует.'})
     context = {
         'page': 'Обо мне',
         'header': 'Обо мне:',
@@ -50,19 +50,30 @@ def about(request):
     return render(request, 'about.html', context)
 
 
+def blog_list(request):
+    """Возвращает страницу со списком постов блога"""
+    logger.info('Запрос на страницу блога')
+    posts = Blog.objects.all().order_by('-created_at')
+    if not posts:
+        logger.warning('Постов пока нет')
+    context = {
+        'page': 'Мой блог',
+        'header': 'Мой блог',
+        'posts': posts,
+    }
+    return render(request, 'blog.html', context)
+
+
 def projects_list(request):
     """
     Возвращает страницу перечня проектов с названием и заголовком.
     Получает все проекты из модели Project, сортирует их
     по убыванию id и отображает на странице.
-    Сортировка по убыванию id нужна, чтобы в случае внесения
-    изменений в старый проект порядок отображения всех
-    проектов на странице не менялся.
     """
     logger.info('Запрос на страницу списка проектов')
     projects_list = Project.objects.all().order_by('-id')
     if not projects_list:
-        logger.warning('Информация о проектах отсутствует')
+        logger.warning('Проекты пока не загружены')
     context = {
         'page': 'Проекты',
         'header': 'Мои проекты:',

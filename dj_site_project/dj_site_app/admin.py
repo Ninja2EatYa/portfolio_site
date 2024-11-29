@@ -7,7 +7,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
-from .models import About, Project, ProjectImage, ReplyField
+from .models import About, Project, ProjectImage, ReplyField, Blog
 from django.utils.html import mark_safe
 
 
@@ -50,6 +50,16 @@ class ProjectAdmin(admin.ModelAdmin):
     img_preview.short_description = 'Изображение'
 
 
+class BlogAdmin(admin.ModelAdmin):
+    """
+    Кастомизация административной панели
+    для модели блога
+    """
+    list_display = ('title', 'author', 'created_at', 'updated_at')
+    list_filter = ('author', 'created_at', 'updated_at')
+    search_fields = ('title', 'content')
+
+
 class MyAdminSite(admin.AdminSite):
     """
     Кастомизация административной панели
@@ -72,3 +82,5 @@ admin_site.register(Project, ProjectAdmin)
 admin_site.register(ReplyField)
 # Регистрация модели ProjectImage с настройками по-умолчанию
 admin_site.register(ProjectImage)
+# Регистрация модели Blog с настройками BlogAdmin
+admin_site.register(Blog, BlogAdmin)
