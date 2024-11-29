@@ -28,13 +28,38 @@ class About(models.Model):
 
 class Blog(models.Model):
     """Модель для блог-постов"""
-    title = models.CharField(max_length=50, verbose_name='Заголовок блога')
-    content = models.TextField(verbose_name='Содержание блога')
-    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор')
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата и время создания')
-    updated_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата и время изменения')
-    image = models.ImageField(upload_to='media/blog/image/', null=True, blank=True, verbose_name='Файл изображения')
-    video = models.FileField(upload_to='media/blog/video/', null=True, blank=True, verbose_name='Файл видео')
+    title = models.CharField(
+        max_length=50,
+        verbose_name='Заголовок блога'
+    )
+    content = models.TextField(
+        verbose_name='Содержание блога'
+    )
+    author = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        verbose_name='Автор'
+    )
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name='Дата и время создания'
+    )
+    updated_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name='Дата и время изменения'
+    )
+    image = models.ImageField(
+        upload_to='media/blog/image/',
+        null=True,
+        blank=True,
+        verbose_name='Файл изображения'
+    )
+    video = models.FileField(
+        upload_to='media/blog/video/',
+        null=True,
+        blank=True,
+        verbose_name='Файл видео'
+    )
 
     class Meta:
         verbose_name = 'МОЙ БЛОГ'
@@ -45,7 +70,7 @@ class Blog(models.Model):
 
 
 @receiver(post_save, sender=Blog)
-def resize_image_on_save(sender, instance, **kwargs) -> None:
+def resize_blog_image_on_save(sender, instance, **kwargs) -> None:
     """
     Сигнал для автоматического уменьшения размеров изображения
     при сохранении экземпляра модели BlogPost.
@@ -59,9 +84,20 @@ class Project(models.Model):
     Модель раздела "Мои проекты" с названием проекта,
     его описанием и датой создания.
     """
-    title = models.CharField(max_length=50, unique=True, null=False, verbose_name='Наименование проекта')
-    description = models.TextField(null=True, verbose_name='Описание проекта')
-    created_at = models.DateField(auto_now_add=True, verbose_name='Дата создания')
+    title = models.CharField(
+        max_length=50,
+        unique=True,
+        null=False,
+        verbose_name='Наименование проекта'
+    )
+    description = models.TextField(
+        null=True,
+        verbose_name='Описание проекта'
+    )
+    created_at = models.DateField(
+        auto_now_add=True,
+        verbose_name='Дата создания'
+    )
 
     class Meta:
         verbose_name = 'ПРОЕКТ'
@@ -79,10 +115,19 @@ class ProjectImage(models.Model):
     для определения изображения для превью).
     """
     project = models.ForeignKey(
-        Project, related_name='images', on_delete=models.CASCADE
+        Project,
+        related_name='images',
+        on_delete=models.CASCADE
     )
-    image = models.ImageField(upload_to='media/project/', null=True, verbose_name='Файл изображения')
-    order = models.PositiveIntegerField(default=2, verbose_name='Порядок отображения на сайте')
+    image = models.ImageField(
+        upload_to='media/project/',
+        null=True,
+        verbose_name='Файл изображения'
+    )
+    order = models.PositiveIntegerField(
+        default=2,
+        verbose_name='Порядок отображения на сайте'
+    )
 
     class Meta:
         verbose_name = 'Изображение и проект'
@@ -108,7 +153,7 @@ class ProjectImage(models.Model):
 
 
 @receiver(post_save, sender=ProjectImage)
-def resize_image_on_save(sender, instance, **kwargs) -> None:
+def resize_project_image_on_save(sender, instance, **kwargs) -> None:
     """
     Сигнал для автоматического уменьшения размеров изображения
     при сохранении экземпляра модели ProjectImage.
@@ -122,11 +167,30 @@ class ReplyField(models.Model):
     Модель раздела "Контакты" с полями для
     ручного ввода посетителем сайта
     """
-    first_name = models.CharField(max_length=30, null=False, verbose_name='Имя')
-    second_name = models.CharField(max_length=30, null=False, verbose_name='Фамилия')
-    request_box = models.TextField(null=False, max_length=500, verbose_name='Сообщение')
-    email = models.EmailField(null=False, verbose_name='E-mail')
-    phone = models.CharField(null=False, max_length=50, verbose_name='Телефон')
+    first_name = models.CharField(
+        max_length=30,
+        null=False,
+        verbose_name='Имя'
+    )
+    second_name = models.CharField(
+        max_length=30,
+        null=False,
+        verbose_name='Фамилия'
+    )
+    request_box = models.TextField(
+        null=False,
+        max_length=500,
+        verbose_name='Сообщение'
+    )
+    email = models.EmailField(
+        null=False,
+        verbose_name='E-mail'
+    )
+    phone = models.CharField(
+        null=False,
+        max_length=50,
+        verbose_name='Телефон'
+    )
 
     class Meta:
         verbose_name = 'КОНТАКТ'
