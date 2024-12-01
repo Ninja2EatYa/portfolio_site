@@ -1,10 +1,10 @@
 /* Основные стили для тела страницы */
 body {
     font-family: 'Avenir', 'Nunito', sans-serif;
-    font-size: 20px;
+    font-size: 1.5vw;
     color: rgba(255, 255, 255, 0.5);
-    padding: 0px;
-    margin: 0;
+    padding: 0%;
+    margin: 0%;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -30,7 +30,7 @@ input, textarea {
 /* Стили для баннера */
 .banner {
     width: 100%;
-    height: 100px;
+    height: auto;
     background-color: rgba(51, 51, 51, 0.1);
     display: flex;
     align-items: center;
@@ -44,12 +44,12 @@ input, textarea {
     font-weight: normal;
     color: rgba(255, 255, 255, 0.5);
     background-color: rgba(51, 51, 51, 0.1);
-    padding: 20px 30px;
+    padding: 1.5% 3%;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 20px;
-    margin: 10px; /* Отступы между кнопками */
+    font-size: 100%;
+    margin: 1.5%; /* Отступы между кнопками */
     text-decoration: none;
     transition: transform 0.3s ease;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
@@ -66,10 +66,10 @@ input, textarea {
 /* Основные стили для кнопки возврата */
 .back-button {
     position: fixed;
-    top: 50px;
-    left: 50px;
-    width: 50px;
-    height: 50px;
+    top: 50%;
+    left: 2%;
+    width: 4vw;
+    height: 4vw;
     border-radius: 50%;
     background-color: rgba(51, 51, 51, 0.1);
     color: rgba(255, 255, 255, 0.5);
@@ -77,7 +77,7 @@ input, textarea {
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    font-size: 24px;
+    font-size: 2vw;
     transition: transform 0.3s ease;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
 }
@@ -98,26 +98,26 @@ input, textarea {
 /* Стили для блока поста */
 .post-block {
     border-radius: 5px;
-    max-width: 500px;
+    max-width: 40vw;
     width: 100%;
     height: auto;
     display: block;
-    padding: 50px;
-    margin: 50px auto;
+    padding: 4%;
+    margin: 4% auto;
     background-color: rgba(51, 51, 51, 0.1);
     color: rgba(255, 255, 255, 0.7);
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
 }
 
+/*  */
 .post-info {
-    font-size: 10px;
+    font-size: 1vw;
     text-align: right;
 }
 
 /* Стили для изображений внутри блока поста */
 .post-block img {
     border-radius: 5px;
-    width: 500px;
     width: 100%;
     height: auto;
     display: block;
@@ -126,7 +126,6 @@ input, textarea {
 /* Стили для видео внутри блока поста */
 .post-block video {
     border-radius: 5px;
-    width: 500px;
     width: 100%;
     height: auto;
     display: block;
@@ -140,12 +139,12 @@ input, textarea {
 /* Стили для кнопок внутри блока проекта */
 .project-block .button {
     display: inline-block;
-    width: 500px;
-    margin-bottom: 50px;
+    width: 40%;
+    margin-bottom: 4%;
     text-align: left;
     font-family: inherit;
-    font-size: 20px;
-    padding: 50px;
+    font-size: 2vw;
+    padding: 4%;
     background-color: rgba(51, 51, 51, 0.1);
     color: rgba(255, 255, 255, 0.5);
     text-decoration: none;
@@ -167,22 +166,21 @@ input, textarea {
 /* Стили для изображений внутри блока проекта */
 .project-block img {
     display: block;
-    margin: 20px auto 0;
+    margin: 4% auto 0;
     width: 100%;
-    width: 500px;
     height: auto;
 }
 
 /* Стили для заголовка */
 header {
-    font-size: 26px;
+    font-size: 2vw;
     text-align: center;
     color: rgba(255, 255, 255, 1);
 }
 
 /* Стили для футера */
 footer {
-    font-size: 12px;
+    font-size: 1vw;
     font-weight: lighter;
     background-color: rgba(51, 51, 51, 0.1);
     color: rgba(255, 255, 255, 0.7);
@@ -201,33 +199,35 @@ footer {
     cursor: pointer;
     transition: transform 0.3s;
     box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+    max-width: 20vw;
+    max-height: auto;
 }
 
 /* Стили для изображений в галерее при наведении курсора */
 .image-gallery img:hover {
-    transform: scale(1.03);
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    transform: scale(1.1);
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.4);
 }
 
 /* Стиль нижней кнопки "НАЗАД" */
 .back-bottom-button {
-    font-family: 'Avenir', 'Nunito', sans-serif;
+    font-family: inherit;
     font-weight: normal;
     color: rgba(255, 255, 255, 0.5);
     background-color: rgba(51, 51, 51, 0.1);
-    padding: 20px 0px;
+    padding: 0%;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 1.5vw;
     text-decoration: none;
     transition: transform 0.1s ease;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
     margin: auto;
     text-align: center;
-    width: 600px;
-    margin-bottom: 20px;
-    margin-top: 20px;
+    width: 40%;
+    margin-bottom: 1%;
+    margin-top: 1%;
 }
 
 .back-bottom-button:hover {
@@ -238,15 +238,16 @@ footer {
 }
 
 .input-line {
+    max-width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .input-box {
-    width: 430px;
     text-align: left;
-    padding: 8px;
-    font-size: 16px;
+    font-size: 1em;
     border-radius: 5px;
+    margin-left: 0%;
+    min-width: 30vw;
 }

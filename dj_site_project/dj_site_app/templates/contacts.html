@@ -10,6 +10,7 @@
     {% load static %}
     <!-- Подключение стилей CSS -->
     <link rel="stylesheet" href="{% static '/css/styles.css' %}">
+    <link rel="icon" href="{% static '/backgrounds/favicon.ico' %}" type="image/x-icon">
 </head>
 <body style="background-image: url('{% static 'backgrounds/colored1.jpg' %}');
     background-size: cover; background-attachment: fixed;">
@@ -18,8 +19,8 @@
         <h1>{{ header }}</h1>
     </header>
     <!-- Основной контент страницы с формой для ввода контактных данных посетителя сайта -->
-    <div class="content" style="margin: 0 auto; max-width: 800px; padding: 0px;">
-        <form method="post" style="display: grid; gap: 20px;">
+    <div class="content" style="margin: 0% auto; padding: 0%; max-width: 40vw; width: 100%;">
+        <form method="post" style="display: grid; gap: 4%;">
             {% csrf_token %}
             <!-- Поле "Имя" -->
             <div class="input-line">
@@ -35,7 +36,7 @@
             <div class="input-line">
                 <label for="request_box">Сообщение:</label>
                 <textarea class="input-box" id="request_box" name="request_box"
-                          style="height: 80px; resize: none;" required></textarea>
+                          style="height: 120px; resize: none;" required></textarea>
             </div>
             <!-- Поле "E-mail" -->
             <div class="input-line">
@@ -49,7 +50,7 @@
             </div>
             <!-- Кнопка для отправки формы -->
             <button class="back-bottom-button" type="submit"
-                    style="margin-top: 0px; margin-bottom: 0px;">ОТПРАВИТЬ</button>
+                    style="padding: 0%;  width: 100%;">ОТПРАВИТЬ</button>
         </form>
     </div>
     <!-- Кнопки для возврата на главную страницу -->

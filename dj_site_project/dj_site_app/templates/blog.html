@@ -10,6 +10,7 @@
     {% load static %}
     <!-- Подключение стилей CSS -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="icon" href="{% static '/backgrounds/favicon.ico' %}" type="image/x-icon">
 </head>
 <body style="background-image: url('{% static 'backgrounds/colored1.jpg' %}');
     background-size: cover; background-attachment: fixed;">
@@ -32,7 +33,7 @@
                         {% elif post.video %}
                             <video controls>
                                 <source src="{{ post.video.url }}" type="video/mp4">
-                                <source src="{{ post.video.url }}" type="video/wmv">
+                                <source src="{{ post.video.url }}" type="video/mov">
                                 Your browser does not support the video tag
                             </video>
                         {% endif %}

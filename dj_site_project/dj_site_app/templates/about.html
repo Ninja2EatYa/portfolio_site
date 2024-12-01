@@ -10,6 +10,7 @@
     {% load static %}
     <!-- Подключение стилей CSS -->
     <link rel="stylesheet" href="{% static '/css/styles.css' %}">
+    <link rel="icon" href="{% static '/backgrounds/favicon.ico' %}" type="image/x-icon">
 </head>
 <body style="background-image: url('{% static '/backgrounds/colored1.jpg' %}');
     background-size: cover; background-attachment: fixed;">
@@ -18,7 +19,7 @@
         <h1>{{ header }}</h1>
     </header>
     <!-- Основной контент страницы с динамически заполняемыми полями -->
-    <div class="content" style="margin: auto; max-width: 1200px;">
+    <div class="content" style="margin: auto; max-width: 80%;">
         <form method="post">
             {{ about_text|linebreaks }}
         </form>
