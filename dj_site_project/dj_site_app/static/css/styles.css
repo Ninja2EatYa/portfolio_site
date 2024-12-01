@@ -98,11 +98,11 @@ input, textarea {
 /* Стили для блока поста */
 .post-block {
     border-radius: 5px;
-    max-width: 40vw;
+    max-width: 30vw;
     width: 100%;
     height: auto;
     display: block;
-    padding: 4%;
+    padding: 5vw;
     margin: 4% auto;
     background-color: rgba(51, 51, 51, 0.1);
     color: rgba(255, 255, 255, 0.7);
@@ -139,12 +139,12 @@ input, textarea {
 /* Стили для кнопок внутри блока проекта */
 .project-block .button {
     display: inline-block;
-    width: 40%;
+    width: 30vw;
     margin-bottom: 4%;
     text-align: left;
     font-family: inherit;
     font-size: 2vw;
-    padding: 4%;
+    padding: 5vw;
     background-color: rgba(51, 51, 51, 0.1);
     color: rgba(255, 255, 255, 0.5);
     text-decoration: none;
@@ -215,7 +215,7 @@ footer {
     font-weight: normal;
     color: rgba(255, 255, 255, 0.5);
     background-color: rgba(51, 51, 51, 0.1);
-    padding: 0%;
+    padding: 1% 0;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -228,6 +228,7 @@ footer {
     width: 40%;
     margin-bottom: 1%;
     margin-top: 1%;
+    max-height: none;
 }
 
 .back-bottom-button:hover {
