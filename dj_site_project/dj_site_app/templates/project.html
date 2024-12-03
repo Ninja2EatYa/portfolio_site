@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <!-- Настройка масштабирования для мобильных устройств -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Подключение иконки телеграм -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- Динамически заполняемое название страницы -->
     <title>{{ page }}</title>
     <!-- Загрузка статических файлов Django -->
@@ -42,9 +44,13 @@
     <!-- Кнопки для возврата на главную страницу -->
     <a class="back-button" href="{% url 'main' %}"></a>
     <a class="back-bottom-button" href="{% url 'projects_list' %}">НАЗАД</a>
-    <!-- Футер с динамическим выводом текущего года -->
+    <!-- Футер с динамическим выводом текущего года и иконкой телеграм-->
     <footer>
-        <p>Москва {% now "Y" %}</p>
+        <p>Москва {% now "Y" %}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://t.me/ваш_username" target="_blank" class="telegram-icon">
+            <i class="fab fa-telegram"></i>
+            </a>
+        </p>
     </footer>
 <!-- Подключение карусели от glightbox для перелистывания изображений проекта -->
 <script src="{% static 'glightbox/glightbox.min.js' %}"></script>

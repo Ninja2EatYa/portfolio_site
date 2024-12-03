@@ -12,6 +12,7 @@
 """
 
 from django.shortcuts import render, redirect, get_object_or_404
+from django.core.paginator import Paginator
 from .models import About, Blog, Project, ReplyField
 import logging
 
@@ -51,15 +52,21 @@ def about(request):
 
 
 def blog_list(request):
-    """Возвращает страницу со списком постов блога"""
+    """
+    Возвращает страницу со списком постов блога
+    с обработкой через пагинатор
+    """
     logger.info('Запрос на страницу блога')
     posts = Blog.objects.all().order_by('-created_at')
+    paginator = Paginator(posts, 1)
+    page_number = request.GET.get('page')
+    page_object = paginator.get_page(page_number)
     if not posts:
         logger.warning('Постов пока нет')
     context = {
         'page': 'Мой блог',
         'header': 'Мой блог',
-        'posts': posts,
+        'page_object': page_object,
     }
     return render(request, 'blog.html', context)
 

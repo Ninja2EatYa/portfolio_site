@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <!-- Настройка масштабирования для мобильных устройств -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Подключение иконки телеграм -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- Динамически заполняемое название страницы -->
-    <title>{{ page }}</title>
+    <title>{{page}}</title>
     <!-- Загрузка статических файлов Django -->
     {% load static %}
     <!-- Подключение стилей CSS -->
@@ -16,41 +18,71 @@
     background-size: cover; background-attachment: fixed;">
     <!-- Динамически заполняемый заголовок -->
     <header>
-        <h1>{{ header }}</h1>
+        <h1>{{header}}</h1>
     </header>
+    <!-- Постраничная навигация -->
+    <div class="pagination">
+        {% if page_object.has_previous %}
+            <a href="?page=1">&laquo;</a>
+            <a href="?page={{ page_object.previous_page_number }}">&lsaquo;</a>
+        {% endif %}
+        <span class="current">
+            {{ page_object.number }} из {{ page_object.paginator.num_pages }}
+        </span>
+        {% if page_object.has_next %}
+            <a href="?page={{ page_object.next_page_number }}">&rsaquo;</a>
+            <a href="?page={{ page_object.paginator.num_pages }}">&raquo;</a>
+        {% endif %}
+    </div>
     <!-- Основной контент страницы с постами блога -->
     <div class="content">
         <!-- Если пост не загружен, то вывести текст -->
-        {% if not posts %}
+        {% if not page_object %}
             <p style="text-align: center;">Постов пока нет</p>
         <!-- Вывод всех постов блога -->
         {% else %}
-            <div class="blog-block">
-                {% for post in posts %}
-                    <div class="post-block">
-                        {% if post.image %}
-                            <img src="{{ post.image.url }}" alt="{{ post.title }}">
-                        {% elif post.video %}
-                            <video controls>
-                                <source src="{{ post.video.url }}" type="video/mp4">
-                                <source src="{{ post.video.url }}" type="video/mov">
-                                Your browser does not support the video tag
-                            </video>
-                        {% endif %}
-                        <p class="post-info">Дата создания: {{ post.created_at }}<br>Автор: {{ post.author }}</p>
-                        <h2>{{ post.title }}</h2>
-                        <p>{{ post.content }}</p>
-                    </div>
-                {% endfor %}
-            </div>
+            {% for post in page_object %}
+                <div class="post-block">
+                    {% if post.image %}
+                        <img src="{{post.image.url}}" alt="{{post.title}}">
+                    {% elif post.video %}
+                        <video controls>
+                            <source src="{{post.video.url}}" type="video/mp4">
+                            <source src="{{post.video.url}}" type="video/mov">
+                            Your browser does not support the video tag
+                        </video>
+                    {% endif %}
+                    <p class="post-info">Дата создания: {{post.created_at}}<br>Автор: {{post.author}}</p>
+                    <h2>{{post.title}}</h2>
+                    <p>{{post.content}}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <!-- Постраничная навигация -->
+    <div class="pagination">
+        {% if page_object.has_previous %}
+            <a href="?page=1">&laquo;</a>
+            <a href="?page={{ page_object.previous_page_number }}">&lsaquo;</a>
+        {% endif %}
+        <span class="current">
+            {{ page_object.number }} из {{ page_object.paginator.num_pages }}
+        </span>
+        {% if page_object.has_next %}
+            <a href="?page={{ page_object.next_page_number }}">&rsaquo;</a>
+            <a href="?page={{ page_object.paginator.num_pages }}">&raquo;</a>
         {% endif %}
     </div>
     <!-- Кнопки для возврата на главную страницу -->
     <a class="back-button" href="{% url 'main' %}"></a>
     <a class="back-bottom-button" href="{% url 'main' %}">НАЗАД</a>
-    <!-- Футер с динамическим выводом текущего года -->
+    <!-- Футер с динамическим выводом текущего года и иконкой телеграм-->
     <footer>
-        <p>Москва {% now "Y" %}</p>
+        <p>Москва {% now "Y" %}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://t.me/ваш_username" target="_blank" class="telegram-icon">
+            <i class="fab fa-telegram"></i>
+            </a>
+        </p>
     </footer>
 </body>
 </html>
