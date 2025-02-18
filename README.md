@@ -9,14 +9,14 @@
 ## ➡️ Основные функции
 
 - **Главная страница:** Отображает меню с возможностью попадания на другие страницы сайта.  
-  <img src="https://github.com/Ninja2EatYa/portfolio_site/blob/main/pages/main.png" alt="main" width="70%" align="left" style="margin-top: 2%;">
+  <img src="https://github.com/Ninja2EatYa/portfolio_site/blob/main/pages/main.png" alt="main" width="70%" align="center" style="margin-top: 2%;">  
 - **Страница "Обо мне":** Предоставляет информацию о владельце портфолио проектов.
 - **Страница "Блог":** Позволяет вести блок с новостями.  
-  <img src="https://github.com/Ninja2EatYa/portfolio_site/blob/main/pages/blog.png" alt="main" width="70%" align="center" style="margin: 5%;">
+  <img src="https://github.com/Ninja2EatYa/portfolio_site/blob/main/pages/blog.png" alt="main" width="70%" align="center" style="margin-top: 5%;">  
 - **Список проектов:** Показывает все проекты, доступные в портфолио.
 - **Страница проекта:** Детальное описание конкретного проекта с возможностью просмотра изображений с разработанным под проект дизайном.  
-  <img src="https://github.com/Ninja2EatYa/portfolio_site/blob/main/pages/projects.png" alt="main" width="70%" align="center" style="margin: 5%;">
-- **Страница контактов:** Форма для отправки контактной информации владельцу сайта. 
+  <img src="https://github.com/Ninja2EatYa/portfolio_site/blob/main/pages/projects.png" alt="main" width="70%" align="center" style="margin: 5%;">  
+- **Страница контактов:** Форма для отправки контактной информации владельцу сайта.  
   <img src="https://github.com/Ninja2EatYa/portfolio_site/blob/main/pages/blog.png" alt="main" width="70%" align="contacts" style="margin: 5%;">
 
 ## ➡️ Установка и запуск
