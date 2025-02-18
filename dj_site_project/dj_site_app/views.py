@@ -25,7 +25,7 @@ def main(request):
     logger.info('Запрос на главную страницу')
     context = {
         'page': 'Главная',
-        'header': 'Алиса Александрова',
+        'header': 'Алиса Иванова',
     }
     return render(request, 'main.html', context)
 
