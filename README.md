@@ -9,9 +9,7 @@
 ## ➡️ Основные функции
 
 - **Главная страница:** Отображает меню с возможностью попадания на другие страницы сайта.
-  <div style="padding: 5px; width: 50%; text-align: center">
-  <img src="https://github.com/Ninja2EatYa/portfolio_site/blob/main/pages/main.png" alt="main">
-  </div>
+  <img src="https://github.com/Ninja2EatYa/portfolio_site/blob/main/pages/main.png" alt="main" width="50%" align="center" style="margin: 2%;">
 - **Страница "Обо мне":** Предоставляет информацию о владельце портфолио проектов.
 - **Страница "Блог":** Позволяет вести блок с новостями.
   <div style="padding: 5px; width: 50%; text-align: center">
