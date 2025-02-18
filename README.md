@@ -1,6 +1,4 @@
 # Django-проект сайта-визитки для дизайнера
-<img src="https://github.com/Ninja2EatYa/portfolio_site/blob/main/pages/main.png" align=left>
-<img src="https://github.com/Ninja2EatYa/portfolio_site/blob/main/pages/blog.png" align=left>
 
 ## ➡️ О проекте
 
@@ -11,7 +9,14 @@
 ## ➡️ Основные функции
 
 - **Главная страница:** Отображает меню с возможностью попадания на другие страницы сайта.
+  <div style="padding: 5px; width: 50%; text-align: center">
+  <img src="https://github.com/Ninja2EatYa/portfolio_site/blob/main/pages/main.png" alt="main">
+  </div>
 - **Страница "Обо мне":** Предоставляет информацию о владельце портфолио проектов.
+- **Страница "Блог":** Позволяет вести блок с новостями.
+  <div style="padding: 5px; width: 50%; text-align: center">
+  <img src="https://github.com/Ninja2EatYa/portfolio_site/blob/main/pages/blog.png" alt="blog">
+  </div>
 - **Список проектов:** Показывает все проекты, доступные в портфолио.
 - **Страница проекта:** Детальное описание конкретного проекта с возможностью просмотра изображений с разработанным под проект дизайном.
 - **Страница контактов:** Форма для отправки контактной информации владельцу сайта.
