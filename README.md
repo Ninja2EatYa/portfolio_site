@@ -1,5 +1,6 @@
 # Django-проект сайта-визитки для дизайнера
-<img src="https://github.com/Ninja2EatYa/diploma_dj_site/blob/main/colored3.jpg" align=left>
+<img src="https://github.com/Ninja2EatYa/portfolio_site/blob/main/pages/main.png" align=left>
+<img src="https://github.com/Ninja2EatYa/portfolio_site/blob/main/pages/blog.png" align=left>
 
 ## ➡️ О проекте
 
